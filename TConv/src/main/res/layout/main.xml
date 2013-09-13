@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/input_unit_label">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        android:id="@+id/main_title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dip"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_temp_label"
+        android:id="@+id/input_temp_label"
+        android:layout_below="@+id/main_title"
+        android:layout_alignBottom="@+id/input_temp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/input_temp"
+        android:layout_below="@+id/main_title"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/input_unit_label"
+        android:id="@+id/input_unit_label"
+        android:layout_below="@+id/input_temp_label"
+        android:layout_alignParentLeft="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_unit"
+        android:layout_below="@+id/input_temp"
+        android:layout_alignLeft="@+id/input_temp"
+        android:layout_alignParentRight="true"
+        android:editable="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/result_view"
+        android:singleLine="false"
+        android:layout_below="@+id/go_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="15dip"
+        android:textSize="25sp"
+        android:layout_alignRight="@+id/dest_unit"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dest_unit_label"
+        android:id="@+id/dest_unit_label"
+        android:layout_below="@+id/input_unit"
+        android:layout_alignParentLeft="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dest_unit"
+        android:layout_below="@+id/input_unit"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/input_unit"
+        android:editable="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/go_button_label"
+        android:id="@+id/go_button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/result_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
