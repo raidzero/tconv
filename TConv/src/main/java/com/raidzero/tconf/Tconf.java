@@ -17,10 +17,6 @@ import android.widget.TextView;
 public class Tconf extends Activity implements View.OnClickListener{
     private static final String TAG = "TConf";
 
-    private static final int UNIT_F = 0;
-    private static final int UNIT_C = 1;
-    private static final int UNIT_K = 2;
-
     EditText input_temp;
     EditText input_unit;
     EditText dest_unit;
@@ -73,6 +69,7 @@ public class Tconf extends Activity implements View.OnClickListener{
 
                 char deg_symbol = '\u00B0';
                 result_view.setText("" + input_temp_value + " " + deg_symbol + s_unit + " -> " + d_unit + ":\n" + res + " " + deg_symbol + d_unit);
+                Log.d(TAG, "" + input_temp_value + " " + deg_symbol + s_unit + " -> " + d_unit + "=" + res + " " + deg_symbol + d_unit);
                 break;
         }
     }
