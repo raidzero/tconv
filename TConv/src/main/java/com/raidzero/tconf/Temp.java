@@ -5,9 +5,9 @@ package com.raidzero.tconf;
  */
 public class Temp {
     private char unit;
-    private float value;
+    private double value;
 
-    public Temp(float v, char u) {
+    public Temp(double v, char u) {
         this.value = v;
         this.unit = u;
     }
@@ -19,19 +19,18 @@ public class Temp {
             case 'C':
                 switch(unit) {
                     case 'F':
-                    res = ((value - 32) * 5) / 9.0; // convert F to C
-                    break;
-                case 'C':
-                    res = value; //already C
-                    break;
-                case 'K':
-                    res = value - 273.15; // convert K to C
-                    break;
+                        res = ((value - 32) * 5) / 9.0; // convert F to C
+                        break;
+                    case 'C':
+                        res = value; //already C
+                        break;
+                    case 'K':
+                        res = value - 273.15; // convert K to C
+                        break;
                 }
                 break;
             case 'K':
-                switch(unit)
-                {
+                switch(unit) {
                     case 'F':
                         res = ((value - 32) / 1.8) + 273.15; // convert F to K
                         break;
@@ -44,8 +43,7 @@ public class Temp {
                 }
                 break;
             case 'F':
-                switch(unit)
-                {
+                switch(unit) {
                     case 'F':
                         res = value; // already F
                         break;
@@ -58,6 +56,9 @@ public class Temp {
                 }
                 break;
         }
+
+        // round it to 3 decimal places
+        res = Math.round(res * 1000) / 1000;
         return res;
     }
 }

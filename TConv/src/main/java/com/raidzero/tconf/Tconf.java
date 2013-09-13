@@ -5,9 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,7 +20,6 @@ public class Tconf extends Activity implements View.OnClickListener {
     private static final char DEG_SYMBOL = '\u00B0';
 
     EditText input_temp, input_unit, dest_unit;
-    Button convert_button;
     TextView result_view;
 
     @Override
@@ -38,10 +37,17 @@ public class Tconf extends Activity implements View.OnClickListener {
         dest_unit = (EditText) findViewById(R.id.dest_unit);
         dest_unit.setOnClickListener(this);
 
-        convert_button = (Button) findViewById(R.id.go_button);
-        convert_button.setOnClickListener(this);
-
         result_view = (TextView) findViewById(R.id.result_view);
+
+        // listen for temperature changes so the conversion can be updated in real time
+        // except it doesnt detect backspaces on soft keyboards
+        input_temp.setOnKeyListener(new EditText.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //Log.d(TAG, keyCode + " Keycode pressed!");
+                performConversion();
+                return false;
+            }
+        });
     }
 
     public void onClick(View v)
@@ -54,22 +60,6 @@ public class Tconf extends Activity implements View.OnClickListener {
             case R.id.dest_unit:
                 hideSoftKeyboard(this);
                 get_temp_unit(dest_unit);
-                break;
-            case R.id.go_button:
-                hideSoftKeyboard(this);
-
-                float input_temp_value = Float.valueOf(input_temp.getText().toString());
-                String input_unit_value = input_unit.getText().toString();
-                String dest_unit_value = dest_unit.getText().toString();
-
-                char s_unit = input_unit_value.charAt(0);
-                char d_unit = dest_unit_value.charAt(0);
-                Temp t = new Temp(input_temp_value, s_unit);
-                double res = t.convert(d_unit); // do conversion using convert method on Temp object
-
-
-                result_view.setText("" + input_temp_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + ":\n" + res + " " + DEG_SYMBOL + d_unit);
-                Log.d(TAG, "" + input_temp_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + "=" + res + " " + DEG_SYMBOL + d_unit);
                 break;
         }
     }
@@ -84,6 +74,7 @@ public class Tconf extends Activity implements View.OnClickListener {
                             public void onClick(DialogInterface dialoginterface, int i) {
                                 String[] unitsArray = getResources().getStringArray(R.array.temp_units);
                                 v.setText(unitsArray[i]);
+                                performConversion();
                             }
                         })
                 .show();
@@ -92,5 +83,28 @@ public class Tconf extends Activity implements View.OnClickListener {
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public void performConversion()
+    {
+        String input_temp_value = input_temp.getText().toString();
+        if (input_temp_value == null || input_temp_value.isEmpty()) {
+            return; // dont do anything
+        }
+
+        double input_temp_double_value = Double.valueOf(input_temp.getText().toString());
+        String input_unit_value = input_unit.getText().toString();
+        String dest_unit_value = dest_unit.getText().toString();
+
+        if (input_unit_value != null && !dest_unit_value.isEmpty() && !input_unit_value.isEmpty())
+        {
+            char s_unit = input_unit_value.charAt(0);
+            char d_unit = dest_unit_value.charAt(0);
+            Temp t = new Temp(input_temp_double_value, s_unit);
+            double res = t.convert(d_unit); // do conversion using convert method on Temp object
+
+            result_view.setText("" + input_temp_double_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + ":\n" + res + " " + DEG_SYMBOL + d_unit);
+            Log.d(TAG, "" + input_temp_double_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + "=" + res + " " + DEG_SYMBOL + d_unit);
+        }
     }
 }
