@@ -11,6 +11,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by raidzero on 9/13/13 2:09 PM
  */
@@ -67,12 +69,36 @@ public class Tconf extends Activity implements View.OnClickListener {
     // get the unit from a list presented to user and set the view's text to it
     public void get_temp_unit(final EditText v)
     {
+        ArrayList<String> units = new ArrayList<String>();
+        String[] availableUnits = getResources().getStringArray(R.array.temp_units); // all available units
+
+        String currentDestUnit = dest_unit.getText().toString();
+        String currentSourceUnit = input_unit.getText().toString();
+
+        for (String item : availableUnits) {
+            switch (v.getId()) {
+                case R.id.input_unit:
+                    // only add this item to the list if it isn't the current destination unit
+                    if (!item.equals(currentDestUnit)) {
+                        units.add(item);
+                    }
+                    break;
+                case R.id.dest_unit:
+                    // only add this item to the list if it isn't the current source unit
+                    if (!item.equals(currentSourceUnit)) {
+                        units.add(item);
+                    }
+                    break;
+            }
+        }
+
+        final String[] unitsArray = units.toArray(new String[units.size()]);
+
         new AlertDialog.Builder(this)
                 .setTitle(R.string.unit_select)
-                .setItems(R.array.temp_units,
+                .setItems(unitsArray,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialoginterface, int i) {
-                                String[] unitsArray = getResources().getStringArray(R.array.temp_units);
                                 v.setText(unitsArray[i]);
                                 performConversion();
                             }
