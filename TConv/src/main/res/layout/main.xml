@@ -22,7 +22,7 @@
         android:id="@+id/input_temp_label"
         android:layout_below="@+id/main_title"
         android:layout_alignBottom="@+id/input_temp"
-        />
+        android:gravity="bottom"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,9 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/input_unit_label"
-        android:id="@+id/input_unit_label"
+        android:id="@id/input_unit_label"
         android:layout_below="@+id/input_temp_label"
-        android:layout_alignParentLeft="true"/>
+        android:layout_above="@+id/dest_unit_label"
+        android:gravity="bottom"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -74,7 +75,9 @@
         android:text="@string/dest_unit_label"
         android:id="@+id/dest_unit_label"
         android:layout_below="@+id/input_unit"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:gravity="bottom"
+        android:layout_alignBottom="@+id/dest_unit"/>
 
     <EditText
         android:layout_width="wrap_content"

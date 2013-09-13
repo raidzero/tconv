@@ -12,14 +12,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 /**
- * Created by raidzero on 9/13/13.
+ * Created by raidzero on 9/13/13 2:09 PM
  */
-public class Tconf extends Activity implements View.OnClickListener{
-    private static final String TAG = "TConf";
+public class Tconf extends Activity implements View.OnClickListener {
 
-    EditText input_temp;
-    EditText input_unit;
-    EditText dest_unit;
+    private static final String TAG = "TConf";
+    private static final char DEG_SYMBOL = '\u00B0';
+
+    EditText input_temp, input_unit, dest_unit;
     Button convert_button;
     TextView result_view;
 
@@ -67,9 +67,9 @@ public class Tconf extends Activity implements View.OnClickListener{
                 Temp t = new Temp(input_temp_value, s_unit);
                 double res = t.convert(d_unit); // do conversion using convert method on Temp object
 
-                char deg_symbol = '\u00B0';
-                result_view.setText("" + input_temp_value + " " + deg_symbol + s_unit + " -> " + d_unit + ":\n" + res + " " + deg_symbol + d_unit);
-                Log.d(TAG, "" + input_temp_value + " " + deg_symbol + s_unit + " -> " + d_unit + "=" + res + " " + deg_symbol + d_unit);
+
+                result_view.setText("" + input_temp_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + ":\n" + res + " " + DEG_SYMBOL + d_unit);
+                Log.d(TAG, "" + input_temp_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + "=" + res + " " + DEG_SYMBOL + d_unit);
                 break;
         }
     }

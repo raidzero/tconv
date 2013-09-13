@@ -1,7 +1,7 @@
 package com.raidzero.tconf;
 
 /**
- * Created by raidzero on 9/13/13.
+ * Created by raidzero on 9/13/13 2:15 PM
  */
 public class Temp {
     private char unit;
