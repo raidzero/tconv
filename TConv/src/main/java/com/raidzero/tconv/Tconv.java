@@ -118,6 +118,9 @@ public class Tconv extends Activity implements View.OnClickListener {
             case R.id.settings:
                 startActivity(new Intent(this, Prefs.class));
                 return true;
+            case R.id.exit:
+                finish();
+                break;
         }
         return false;
     }
