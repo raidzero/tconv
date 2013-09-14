@@ -3,16 +3,22 @@ package com.raidzero.tconv;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 /**
@@ -23,6 +29,7 @@ public class Tconv extends Activity implements View.OnClickListener {
     private static final String TAG = "TConf";
     private static final char DEG_SYMBOL = '\u00B0';
 
+    private boolean animations_enabled = true;
     EditText input_temp, input_unit, dest_unit;
     TextView result_view;
 
@@ -30,6 +37,8 @@ public class Tconv extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        loadPrefs();
 
         // set up listeners
         input_temp = (EditText) findViewById(R.id.input_temp);
@@ -60,7 +69,25 @@ public class Tconv extends Activity implements View.OnClickListener {
 
             }
         });
+    }
 
+
+    // be sure to reload preferences on all these events
+    public void onStart() {
+        super.onStart();
+        loadPrefs();
+    }
+    public void onRestart() {
+        super.onRestart();
+        loadPrefs();
+    }
+    public void onPause() {
+        super.onPause();
+        loadPrefs();
+    }
+    public void onResume() {
+        super.onResume();
+        loadPrefs();
     }
 
     public void onClick(View v)
@@ -75,6 +102,30 @@ public class Tconv extends Activity implements View.OnClickListener {
                 get_temp_unit(dest_unit);
                 break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                startActivity(new Intent(this, Prefs.class));
+                return true;
+        }
+        return false;
+    }
+
+    public void loadPrefs() {
+        // get preferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        animations_enabled = prefs.getBoolean("animations", true);
     }
 
     // get the unit from a list presented to user and set the view's text to it
@@ -141,6 +192,11 @@ public class Tconv extends Activity implements View.OnClickListener {
             double res = t.convert(d_unit); // do conversion using convert method on Temp object
 
             result_view.setText("" + input_temp_double_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + ":\n" + res + " " + DEG_SYMBOL + d_unit);
+
+            if (animations_enabled) {
+                Animation flyInEffect = AnimationUtils.loadAnimation(this, R.anim.fly_in);
+                result_view.startAnimation(flyInEffect);
+            }
             Log.d(TAG, "" + input_temp_double_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + "=" + res + " " + DEG_SYMBOL + d_unit);
         }
     }

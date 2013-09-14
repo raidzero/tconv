@@ -7,4 +7,8 @@
     <string name="dest_temp_label">Result</string>
     <string name="unit_select">Select a unit</string>
     <string name="go_button_label">Convert</string>
+    <string name="animations_title">Animations</string>
+    <string name="animations_summary">Neat little fly-in result :)</string>
+    <string name="settings_label">Settings</string>
+    <string name="settings_shortcut">S</string>
 </resources>
