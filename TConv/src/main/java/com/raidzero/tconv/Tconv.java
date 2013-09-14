@@ -91,14 +91,6 @@ public class Tconv extends Activity implements View.OnClickListener {
         loadPrefs();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        //Log.d(TAG, "orientation changed!");
-        super.onConfigurationChanged(newConfig);
-        loadPrefs();
-        performConversion();
-    }
-
     public void onClick(View v)
     {
         switch (v.getId()) {
@@ -207,7 +199,7 @@ public class Tconv extends Activity implements View.OnClickListener {
             Temp t = new Temp(input_temp_double_value, s_unit);
             double res = t.convert(d_unit); // do conversion using convert method on Temp object
 
-            result_view.setText("" + input_temp_double_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + ":\n" + res + " " + DEG_SYMBOL + d_unit);
+            result_view.setText("" + input_temp_value + " " + DEG_SYMBOL + s_unit + " -> " + d_unit + ":\n" + res + " " + DEG_SYMBOL + d_unit);
 
             if (animations_enabled) {
                 Animation flyInEffect = AnimationUtils.loadAnimation(this, R.anim.fly_in);
