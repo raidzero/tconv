@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".Prefs"
-            android:label="Prefs" >
+            android:label="Preferences" >
         </activity>
     </application>
 
