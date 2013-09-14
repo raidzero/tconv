@@ -12,8 +12,8 @@
         android:id="@+id/main_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dip"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginBottom="10dip"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -21,43 +21,46 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/input_temp"
-        android:layout_below="@+id/main_title"
-        android:layout_alignParentLeft="true"
         android:gravity="center_horizontal"
+        android:layout_below="@+id/main_title"
+        android:layout_alignRight="@+id/main_title"
         android:hint="@string/input_temp_label"
-        android:layout_alignParentRight="true"
         android:imeOptions="actionDone"/>
 
-    <EditText
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/input_unit"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/input_temp"
-        android:layout_alignLeft="@+id/input_temp"
-        android:layout_alignParentRight="true"
-        android:editable="false"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="@string/input_unit_label"
-        android:gravity="center_horizontal"/>
+        android:id="@+id/linearLayout">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dest_unit"
-        android:layout_below="@+id/input_unit"
-        android:layout_alignParentRight="true"
-        android:layout_alignLeft="@+id/input_unit"
-        android:editable="false"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="@string/dest_unit_label"
-        android:gravity="center_horizontal"/>
+        <EditText
+            android:layout_width="301dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/input_unit"
+            android:gravity="left"
+            android:hint="@string/input_unit_label"
+            android:editable="false"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dest_unit"
+            android:layout_gravity="center_horizontal|top"
+            android:gravity="right"
+            android:hint="@string/dest_unit_label"
+            android:editable="false"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+
+    </LinearLayout>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -67,7 +70,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:textSize="25sp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/dest_unit"
+        android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

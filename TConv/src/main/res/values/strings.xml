@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">TConv</string>
     <string name="main_title">Android Temp Converter</string>
-    <string name="input_temp_label">Temperature:</string>
-    <string name="input_unit_label">Source Unit:</string>
-    <string name="dest_unit_label">Destination Unit:</string>
-    <string name="dest_temp_label">Result:</string>
+    <string name="input_temp_label">Temperature</string>
+    <string name="input_unit_label">Source Unit</string>
+    <string name="dest_unit_label">Destination Unit</string>
+    <string name="dest_temp_label">Result</string>
     <string name="unit_select">Select a unit</string>
     <string name="go_button_label">Convert</string>
 </resources>
