@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -90,6 +91,14 @@ public class Tconv extends Activity implements View.OnClickListener {
         loadPrefs();
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //Log.d(TAG, "orientation changed!");
+        super.onConfigurationChanged(newConfig);
+        loadPrefs();
+        performConversion();
+    }
+
     public void onClick(View v)
     {
         switch (v.getId()) {
@@ -140,6 +149,8 @@ public class Tconv extends Activity implements View.OnClickListener {
         String currentDestUnit = dest_unit.getText().toString();
         String currentSourceUnit = input_unit.getText().toString();
 
+        String menu_title = "";
+
         for (String item : availableUnits) {
             switch (v.getId()) {
                 case R.id.input_unit:
@@ -147,12 +158,14 @@ public class Tconv extends Activity implements View.OnClickListener {
                     if (!item.equals(currentDestUnit)) {
                         units.add(item);
                     }
+                    menu_title = getResources().getString(R.string.source_unit_string);
                     break;
                 case R.id.dest_unit:
                     // only add this item to the list if it isn't the current source unit
                     if (!item.equals(currentSourceUnit)) {
                         units.add(item);
                     }
+                    menu_title = getResources().getString(R.string.dest_unit_string);
                     break;
             }
         }
@@ -160,7 +173,7 @@ public class Tconv extends Activity implements View.OnClickListener {
         final String[] unitsArray = units.toArray(new String[units.size()]);
 
         new AlertDialog.Builder(this)
-                .setTitle(R.string.unit_select)
+                .setTitle(getResources().getString(R.string.unit_select) + " " + menu_title)
                 .setItems(unitsArray,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialoginterface, int i) {

@@ -5,7 +5,9 @@
     <string name="input_unit_label">Source Unit</string>
     <string name="dest_unit_label">Destination Unit</string>
     <string name="dest_temp_label">Result</string>
-    <string name="unit_select">Select a unit</string>
+    <string name="unit_select">Select</string>
+    <string name="dest_unit_string">destination unit</string>
+    <string name="source_unit_string">source unit</string>
     <string name="go_button_label">Convert</string>
     <string name="animations_title">Animations</string>
     <string name="animations_summary">Neat little fly-in result :)</string>
