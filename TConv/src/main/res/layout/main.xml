@@ -12,7 +12,7 @@
         android:id="@+id/main_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dip"
+        android:layout_marginBottom="5dip"
         android:textSize="20sp"/>
 
     <TextView
@@ -62,11 +62,10 @@
         android:id="@+id/result_view"
         android:singleLine="false"
         android:gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="15dip"
         android:textSize="25sp"
-        android:layout_alignRight="@+id/dest_unit"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"/>
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/dest_unit_label"
+        android:layout_alignParentLeft="true"/>
 
     <TextView
         android:layout_width="wrap_content"

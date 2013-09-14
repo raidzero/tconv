@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,15 +43,24 @@ public class Tconf extends Activity implements View.OnClickListener {
 
         result_view = (TextView) findViewById(R.id.result_view);
 
-        // listen for temperature changes so the conversion can be updated in real time
-        // except it doesnt detect backspaces on soft keyboards
-        input_temp.setOnKeyListener(new EditText.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                //Log.d(TAG, keyCode + " Keycode pressed!");
+        // text changed listener
+        input_temp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 performConversion();
-                return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+
     }
 
     public void onClick(View v)
