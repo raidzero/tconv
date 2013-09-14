@@ -1,4 +1,4 @@
-package com.raidzero.tconf;
+package com.raidzero.tconv;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by raidzero on 9/13/13 2:09 PM
  */
-public class Tconf extends Activity implements View.OnClickListener {
+public class Tconv extends Activity implements View.OnClickListener {
 
     private static final String TAG = "TConf";
     private static final char DEG_SYMBOL = '\u00B0';
