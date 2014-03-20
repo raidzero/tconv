@@ -184,7 +184,7 @@ public class Tconv extends Activity implements View.OnClickListener {
     public void performConversion()
     {
         String input_temp_value = input_temp.getText().toString();
-        if (input_temp_value == null || input_temp_value.isEmpty()) {
+        if (input_temp_value == null || input_temp_value.isEmpty() || input_temp_value.equals("-")) {
             return; // dont do anything
         }
 
